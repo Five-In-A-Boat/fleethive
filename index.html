@@ -276,14 +276,21 @@
     /* ── Pricing card highlight ── */
     .pricing-highlight {
       position: relative;
+      background: rgba(15, 26, 46, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
     }
     .pricing-highlight::before {
       content: '';
       position: absolute;
-      inset: -1px;
+      inset: 0;
+      padding: 1px;
       border-radius: 13px;
       background: linear-gradient(135deg, #00C9A7, #008F74);
-      z-index: -1;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
     }
 
     /* ── Step connector ── */
@@ -896,31 +903,31 @@
           <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-teal text-navy text-xs font-bold rounded-full tracking-wide uppercase z-10">
             Most popular
           </div>
-          <div class="pricing-highlight card-lift rounded-xl bg-white/[0.04] p-8 relative z-0">
+          <div class="pricing-highlight card-lift rounded-xl p-8 relative z-0">
             <h3 class="text-lg font-bold text-white mb-1">Growth</h3>
-            <p class="text-sm text-grey-400 mb-6">For SME fleets scaling up</p>
+            <p class="text-sm text-white/70 mb-6">For SME fleets scaling up</p>
             <div class="flex items-baseline gap-1 mb-6">
               <span class="text-4xl font-extrabold text-white font-tabular">£7</span>
-              <span class="text-grey-400 text-sm">/vehicle/month</span>
+              <span class="text-white/70 text-sm">/vehicle/month</span>
             </div>
             <ul class="space-y-3 mb-8">
-              <li class="flex items-start gap-2.5 text-sm text-grey-400">
+              <li class="flex items-start gap-2.5 text-sm text-white/80">
                 <svg class="w-4 h-4 text-teal mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 6–50 vehicles
               </li>
-              <li class="flex items-start gap-2.5 text-sm text-grey-400">
+              <li class="flex items-start gap-2.5 text-sm text-white/80">
                 <svg class="w-4 h-4 text-teal mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Everything in Starter
               </li>
-              <li class="flex items-start gap-2.5 text-sm text-grey-400">
+              <li class="flex items-start gap-2.5 text-sm text-white/80">
                 <svg class="w-4 h-4 text-teal mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Spend benchmarking vs. 80M records
               </li>
-              <li class="flex items-start gap-2.5 text-sm text-grey-400">
+              <li class="flex items-start gap-2.5 text-sm text-white/80">
                 <svg class="w-4 h-4 text-teal mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Quarterly cost forecasts
               </li>
-              <li class="flex items-start gap-2.5 text-sm text-grey-400">
+              <li class="flex items-start gap-2.5 text-sm text-white/80">
                 <svg class="w-4 h-4 text-teal mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Priority garage booking
               </li>
