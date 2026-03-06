@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none">
+  <g transform="translate(213 217)">
+    <g transform="scale(1.1)">
+      <path d="
+        M 108 0
+        H 544
+        V 68
+        A 68 68 0 0 1 476 136
+        H 0
+        V 108
+        A 108 108 0 0 1 108 0
+        Z" fill="#FFFFFF"/>
+      <path d="
+        M 108 196
+        H 380
+        V 264
+        A 68 68 0 0 1 312 332
+        H 0
+        V 304
+        A 108 108 0 0 1 108 196
+        Z" fill="#FFFFFF"/>
+      <circle cx="68" cy="468" r="68" fill="#FFFFFF"/>
+    </g>
+  </g>
+</svg>
