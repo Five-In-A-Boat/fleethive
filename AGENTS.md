@@ -19,21 +19,25 @@ The priority is disciplined execution from approved inputs.
 
 ## Source of truth and precedence
 
-When implementing, use these inputs in this order:
+The inputs are in the root directory of https://github.com/Five-In-A-Boat/fleethive
 
-1. `03_success-criteria.md`
-2. `04_anti-slop-rules.md`
-3. `21_build-brief.md`
-4. `20_website-copy-deck.md`
-5. `18_site-architecture-page-briefs.md`
-6. `19_component-inventory.md`
-7. `16_brand-design-language.md`
-8. `17_content-reference-status.md`
-9. supplied FleetHive SVG logo marks
-   - primary colour
-   - white
-   - black
-10. existing repo conventions and architecture, if clearly intentional and not in conflict with the artefacts above
+Treat these inputs as the canonical source of truth, in this order:
+
+1. `21_build-brief.md`
+2. `AGENTS.md` if present in the repo
+3. Existing repo conventions and architecture, if clearly intentional
+4. `19_component-inventory.md` | define reusable building blocks
+5. `16_brand-design-language.md` | define visual and verbal design direction
+6. `18_site-architecture-page-briefs.md` | define page roles, sections, and non-goals
+7. `20_website-copy-deck.md` | write final page copy
+8. `17_content-reference-status.md` | classify content as real/prototype/placeholder
+9. `03_success-criteria.md` | define business and page goals
+10. `04_anti-slop-rules.md` | define anti-generic quality rules
+11. SVG logo assets
+
+fleethive_logo_primary.svg
+fleethive_logo_white.svg
+fleethive_logo_black.svg
 
 If these conflict:
 - prefer the higher-precedence source
