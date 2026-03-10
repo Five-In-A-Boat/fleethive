@@ -88,11 +88,21 @@ const T = {
   Ytext: "#0A0800",
 };
 
+const BASE = "https://raw.githubusercontent.com/Five-In-A-Boat/fleethive/main/images/";
+const LOGOS = [
+  { name:"Halfords",                 dark:"halfords_dark.svg",   light:"halfords_light.svg",   h:28 },
+  { name:"Hi-Q",                     dark:"hiq_dark.svg",        light:"hiq_light.svg",        h:32 },
+  { name:"Bosch Car Service",        dark:"bosch_dark.svg",      light:"bosch_light.svg",      h:32 },
+  { name:"ATS Euromaster",           dark:"euromaster_dark.svg", light:"euromaster_light.svg", h:30 },
+  { name:"In'n'Out Autocentres",     dark:"innout_dark.svg",     light:"innout_light.svg",     h:34 },
+  { name:"National Tyres & Autocare",dark:"national_dark.svg",   light:"national_light.svg",   h:42 },
+];
+
 /* ── Icon ── */
 const Ic = ({ d, s=16, stroke="currentColor", sw=1.75, fill="none" }) => (
   <svg width={s} height={s} viewBox="0 0 24 24" fill={fill} stroke={stroke}
     strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    {Array.isArray(d) ? d.map((p,i)=><path key={i} d={p}/>) : <path d={d}/>}
+    {Array.isArray(d) ? d.map((p,i)=><path key={i} d={p}/>) : <path d={d}/>} 
   </svg>
 );
 const I = {
@@ -261,10 +271,26 @@ const MockRecords = ({ isDark }) => {
    ROOT
 ═══════════════════════════════════════════════ */
 export default function FleetHive() {
-  const [isDark,   setIsDark]   = useState(true);
-  const [menu,     setMenu]     = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isDark,    setIsDark]   = useState(true);
+  const [menu,      setMenu]     = useState(false);
+  const [scrolled,  setScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
+  const [tickerIdx, setTickerIdx] = useState(0);
+  const [tickerOut, setTickerOut] = useState(false);
+
+  const TICKER_WORDS = ["surprises.", "overspend.", "stress."];
+
+  useEffect(()=>{
+    const iv = setInterval(()=>{
+      // Slide current word out upward, then swap, then slide new word in
+      setTickerOut(true);
+      setTimeout(()=>{
+        setTickerIdx(i=>(i+1) % TICKER_WORDS.length);
+        setTickerOut(false);
+      }, 320);
+    }, 2800);
+    return ()=>clearInterval(iv);
+  },[]);
 
   useEffect(()=>{
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
@@ -334,6 +360,12 @@ export default function FleetHive() {
       @keyframes fadeUp  { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:translateY(0)} }
       @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
       @keyframes bobble  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+      /* Split-flap ticker */
+      @keyframes tickIn  { from{transform:translateY(100%);opacity:0} to{transform:translateY(0);opacity:1} }
+      @keyframes tickOut { from{transform:translateY(0);opacity:1}    to{transform:translateY(-100%);opacity:0} }
+      .tick-in  { animation:tickIn  .32s cubic-bezier(.22,1,.36,1) both }
+      .tick-out { animation:tickOut .32s cubic-bezier(.55,0,1,.45)  both }
 
       .e1{animation:fadeUp .65s cubic-bezier(.22,1,.36,1) .05s both}
       .e2{animation:fadeUp .65s cubic-bezier(.22,1,.36,1) .17s both}
@@ -416,12 +448,12 @@ export default function FleetHive() {
             </button>
 
             {/* Log in — ghost, nav only */}
-            <a href="/login" className="hm nl" style={{ color:t.muted,fontSize:".875rem",fontWeight:500 }}
+            <a href="https://vloot.in/auth/login" className="hm nl" style={{ color:t.muted,fontSize:".875rem",fontWeight:500 }}
               onMouseEnter={e=>e.currentTarget.style.color=t.text}
               onMouseLeave={e=>e.currentTarget.style.color=t.muted}>Log in</a>
 
             {/* Get started — primary */}
-            <a href="/signup" className="bp hm" style={PBtn({padding:"9px 18px",fontSize:".8125rem"})}>
+            <a href="https://vloot.in/onboarding/new" className="bp hm" style={PBtn({padding:"9px 18px",fontSize:".8125rem"})}>
               Get started free
             </a>
 
@@ -439,8 +471,8 @@ export default function FleetHive() {
               <a key={l} href="#" onClick={()=>setMenu(false)} style={{ display:"block",padding:"12px 0",color:t.text,textDecoration:"none",fontSize:".9375rem",fontWeight:500,borderBottom:`1px solid ${t.border}` }}>{l}</a>
             ))}
             <div style={{ display:"flex",gap:8,marginTop:"1.25rem" }}>
-              <a href="/login" style={{ ...GBtn(),flex:1,justifyContent:"center",fontSize:".875rem" }}>Log in</a>
-              <a href="/signup" className="bp" style={PBtn({flex:2,justifyContent:"center"})} onClick={()=>setMenu(false)}>Get started free</a>
+              <a href="https://vloot.in/auth/login" style={{ ...GBtn(),flex:1,justifyContent:"center",fontSize:".875rem" }}>Log in</a>
+              <a href="https://vloot.in/onboarding/new" className="bp" style={PBtn({flex:2,justifyContent:"center"})} onClick={()=>setMenu(false)}>Get started free</a>
             </div>
           </div>
         )}
@@ -473,26 +505,44 @@ export default function FleetHive() {
 
               <h1 className="h1-pull" style={{ fontFamily:"Manrope,sans-serif",lineHeight:1.0,marginBottom:"1.5rem",marginLeft:"-0.25rem" }}>
                 {[
-                  {cls:"e1",txt:"Every van.",    gold:false},
-                  {cls:"e2",txt:"Every date.",   gold:false},
-                  {cls:"e3",txt:"No surprises.", gold:true },
-                ].map(({cls,txt,gold})=>(
+                  {cls:"e1",txt:"Every vehicle.", gold:false},
+                  {cls:"e2",txt:"Every date.",    gold:false},
+                ].map(({cls,txt})=>(
                   <span key={txt} className={cls} style={{
                     display:"block",
                     fontSize:"clamp(2.875rem,6.2vw,5.25rem)",
                     fontWeight:800,letterSpacing:"-0.052em",
-                    color: gold ? T.Y : t.text,
+                    color:t.text,
                   }}>{txt}</span>
                 ))}
+                {/* Split-flap third line */}
+                <span className="e3" style={{
+                  display:"flex",alignItems:"baseline",gap:"0.28em",
+                  fontSize:"clamp(2.875rem,6.2vw,5.25rem)",
+                  fontWeight:800,letterSpacing:"-0.052em",
+                  color:T.Y,
+                }}>
+                  <span>No</span>
+                  {/* Clipping window — only the current word is visible */}
+                  <span style={{ display:"inline-block",overflow:"hidden",verticalAlign:"baseline",height:"1.05em",position:"relative",minWidth:"4.5ch" }}>
+                    <span
+                      key={tickerIdx}
+                      className={tickerOut ? "tick-out" : "tick-in"}
+                      style={{ display:"block",whiteSpace:"nowrap",lineHeight:1.0 }}
+                    >
+                      {TICKER_WORDS[tickerIdx]}
+                    </span>
+                  </span>
+                </span>
               </h1>
 
               <p className="e4" style={{ fontSize:"1.125rem",lineHeight:1.75,color:t.muted,fontWeight:450,letterSpacing:"-0.01em",maxWidth:"40rem",marginBottom:"2rem" }}>
-                FleetHive keeps maintenance dates, running costs, and service records under control — so nothing important lives in memory, inboxes, or scattered spreadsheets.
+                FleetHive keeps your service dates, costs, and records in one place — and connects you to discounted community rates on parts and servicing. Less to remember. Less to spend.
               </p>
 
               {/* CTAs */}
               <div className="e5" style={{ display:"flex",flexWrap:"wrap",gap:".75rem",marginBottom:"1rem" }}>
-                <a href="/signup" className="bp" style={PBtn()}>
+                <a href="https://vloot.in/onboarding/new" className="bp" style={PBtn()}>
                   Get started free <Ic d={I.arrow} s={15} stroke={T.Ytext}/>
                 </a>
                 <a href="/for-households" className="bg" style={GBtn()}>
@@ -502,15 +552,35 @@ export default function FleetHive() {
 
               {/* Commitment reducer — directly under CTAs */}
               <div className="e5" style={{ marginBottom:"2rem" }}>
-                <p style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".625rem",fontWeight:600,color:t.faint,letterSpacing:".07em" }}>
+                <p style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".625rem",fontWeight:600,color:isDark?"#7A8A9A":"#9C9590",letterSpacing:".07em" }}>
                   FREE TO START · NO CREDIT CARD · SETUP IN UNDER 10 MINUTES
                 </p>
               </div>
 
-              {/* Specific social proof */}
-              <div className="e5">
-                <p style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".625rem",fontWeight:600,color:t.faint,letterSpacing:".07em" }}>
-                  USED BY ELECTRICIANS, PLUMBERS, AND GROUNDWORKERS ACROSS THE UK
+              {/* Social proof — avatars + trades line */}
+              <div className="e5" style={{ display:"flex",alignItems:"center",gap:"0.875rem" }}>
+                {/* Avatar stack */}
+                <div style={{ display:"flex",flexShrink:0 }} aria-hidden="true">
+                  {[
+                    { init:"JM", bg:"#FFC83D", fg:"#0A0800" },
+                    { init:"SB", bg: isDark?"#7DA6FF":"#2F6FED", fg:"#FFFFFF" },
+                    { init:"RT", bg: isDark?"#4FB37F":"#147A4B", fg:"#FFFFFF" },
+                  ].map((av,i)=>(
+                    <div key={i} style={{
+                      width:28,height:28,borderRadius:"50%",
+                      background:av.bg,
+                      border:`2px solid ${isDark?"#080A0D":"#FAF7F2"}`,
+                      display:"flex",alignItems:"center",justifyContent:"center",
+                      fontFamily:"Manrope,sans-serif",fontSize:"9px",fontWeight:800,
+                      color:av.fg,
+                      marginLeft:i>0?-8:0,
+                      zIndex:3-i,position:"relative",
+                      flexShrink:0,
+                    }}>{av.init}</div>
+                  ))}
+                </div>
+                <p style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".625rem",fontWeight:600,color:isDark?"#7A8A9A":"#9C9590",letterSpacing:".07em" }}>
+                  ELECTRICIANS, PLUMBERS &amp; GROUNDWORKERS ACROSS THE UK
                 </p>
               </div>
             </div>
@@ -524,26 +594,64 @@ export default function FleetHive() {
                     ?"0 40px 80px rgba(0,0,0,0.7),0 2px 0 rgba(255,255,255,0.06) inset,0 0 80px rgba(255,200,61,0.08)"
                     :"0 24px 60px rgba(18,16,14,0.12),0 4px 12px rgba(18,16,14,0.06),0 1px 0 rgba(255,255,255,0.9) inset",
                   }}>
+                  {/* Header row — status dot + label + discount badge */}
                   <div style={{ display:"flex",alignItems:"center",gap:8,marginBottom:"2rem" }}>
                     <div style={{ width:8,height:8,borderRadius:"50%",background:T.Y,boxShadow:`0 0 0 3px ${T.Y}33`,flexShrink:0 }}/>
-                    <span style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".625rem",fontWeight:600,letterSpacing:".12em",textTransform:"uppercase",color:t.muted }}>Upcoming · MOT due</span>
+                    <span style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".625rem",fontWeight:600,letterSpacing:".12em",textTransform:"uppercase",color:t.muted,flex:1 }}>Upcoming · Service due</span>
+                    {/* Discount badge */}
+                    <span style={{
+                      fontFamily:"'IBM Plex Mono',monospace",fontSize:".5625rem",fontWeight:700,
+                      letterSpacing:".06em",textTransform:"uppercase",
+                      background: isDark?"rgba(79,179,127,0.15)":"rgba(20,122,75,0.10)",
+                      color: isDark?"#4FB37F":"#147A4B",
+                      border:`1px solid ${isDark?"rgba(79,179,127,0.30)":"rgba(20,122,75,0.22)"}`,
+                      padding:"2px 7px",borderRadius:4,whiteSpace:"nowrap",
+                    }}>Community rate</span>
                   </div>
-                  <div style={{ display:"flex",alignItems:"baseline",gap:".5rem",marginBottom:"2rem" }}>
+                  <div style={{ display:"flex",alignItems:"baseline",gap:".5rem",marginBottom:"1.25rem" }}>
                     <span style={{ fontFamily:"Manrope,sans-serif",fontSize:"5.5rem",fontWeight:800,letterSpacing:"-0.055em",lineHeight:1,color:T.Y }}>14</span>
                     <span style={{ fontFamily:"Manrope,sans-serif",fontSize:"1.5rem",fontWeight:600,color:t.muted,letterSpacing:"-0.02em" }}>days</span>
+                  </div>
+                  {/* Discount saving line */}
+                  <div style={{ display:"flex",alignItems:"center",gap:8,marginBottom:"1.25rem" }}>
+                    <span style={{ fontFamily:"Manrope,sans-serif",fontSize:".875rem",fontWeight:450,color:t.muted,textDecoration:"line-through" }}>£340</span>
+                    <span style={{ fontFamily:"Manrope,sans-serif",fontSize:".9375rem",fontWeight:700,color:isDark?"#4FB37F":"#147A4B" }}>£272 with FleetHive rate</span>
+                    <span style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".5625rem",fontWeight:700,color:isDark?"#4FB37F":"#147A4B",background:isDark?"rgba(79,179,127,0.12)":"rgba(20,122,75,0.08)",padding:"2px 6px",borderRadius:3 }}>SAVE 20%</span>
                   </div>
                   <div style={{ height:1,background:t.border,marginBottom:"1.25rem" }}/>
                   <div style={{ marginBottom:"1.5rem" }}>
                     <div style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".875rem",fontWeight:600,color:t.text,letterSpacing:".04em",marginBottom:4 }}>EK22 XPL</div>
                     <div style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".75rem",color:t.muted,letterSpacing:".02em" }}>Ford Transit Connect · 2022</div>
                   </div>
-                  <button className="bp" style={{ ...PBtn({width:"100%",justifyContent:"center",padding:"10px 0",fontSize:".8125rem",borderRadius:8}) }}>
+                  <a href="https://vloot.in/onboarding/new" className="bp" style={{ ...PBtn({width:"100%",justifyContent:"center",padding:"10px 0",fontSize:".8125rem",borderRadius:8,textDecoration:"none"}) }}>
                     Book service now <Ic d={I.arrow} s={13} stroke={T.Ytext} sw={2.5}/>
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
+
           </div>
+
+          {/* ── Partner logos — full width, below hero grid ── */}
+          <div style={{ maxWidth:"72rem",margin:"0 auto",padding:"2.5rem 0 0.5rem" }}>
+            <div style={{
+              display:"grid",
+              gridTemplateColumns:"repeat(6,1fr)",
+              alignItems:"center",
+              gap:"0.75rem",
+            }}>
+              {LOGOS.map((lg)=>(
+                <div key={lg.name} style={{ display:"flex",alignItems:"center",justifyContent:"center" }}>
+                  <img
+                    src={BASE + (isDark ? lg.dark : lg.light)}
+                    alt={lg.name}
+                    style={{ height:lg.h, width:"auto", maxWidth:"100%" }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
         </section>
 
         {/* ══════════════════ §2 YELLOW SHOCK ══════════════════ */}
@@ -778,7 +886,7 @@ export default function FleetHive() {
                     ))}
                   </ul>
 
-                  <a href="/signup" className="bp" style={PBtn({width:"100%",justifyContent:"center",padding:"14px 0",fontSize:"1rem"})}>
+                  <a href="https://vloot.in/onboarding/new" className="bp" style={PBtn({width:"100%",justifyContent:"center",padding:"14px 0",fontSize:"1rem"})}>
                     Start free — no card needed <Ic d={I.arrow} s={15} stroke={T.Ytext}/>
                   </a>
 
@@ -878,7 +986,7 @@ export default function FleetHive() {
               Add your vehicles. Set your reminders. See what each one is costing. Free for 14 days — no card required.
             </p>
             <div style={{ display:"flex",flexWrap:"wrap",gap:".875rem",justifyContent:"center",marginBottom:"1.25rem" }}>
-              <a href="/signup" className="bp" style={PBtn({padding:"15px 34px",fontSize:"1rem"})}>
+              <a href="https://vloot.in/onboarding/new" className="bp" style={PBtn({padding:"15px 34px",fontSize:"1rem"})}>
                 Get started free <Ic d={I.arrow} s={16} stroke={T.Ytext}/>
               </a>
               <a href="/for-households" className="bg" style={GBtn({padding:"15px 34px",fontSize:"1rem"})}>
@@ -916,7 +1024,7 @@ export default function FleetHive() {
         background:isDark?"rgba(8,10,13,0.96)":"rgba(250,247,242,0.97)",
         backdropFilter:"blur(20px)",WebkitBackdropFilter:"blur(20px)",
         borderTop:`1px solid ${t.border}`,zIndex:40 }}>
-        <a href="/signup" className="bp" style={PBtn({display:"flex",justifyContent:"center",width:"100%"})}>
+        <a href="https://vloot.in/onboarding/new" className="bp" style={PBtn({display:"flex",justifyContent:"center",width:"100%"})}>
           Get started free <Ic d={I.arrow} s={15} stroke={T.Ytext}/>
         </a>
       </div>
