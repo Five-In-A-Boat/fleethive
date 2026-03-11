@@ -23,9 +23,9 @@ export const NAV_LINKS = [
 ];
 
 export const HERO_AVATARS = [
-  { initials: "JM", bg: "#FFC83D", fg: "#0A0800" },
-  { initials: "SB", bgDark: "#7DA6FF", bgLight: "#2F6FED", fg: "#FFFFFF" },
-  { initials: "RT", bgDark: "#4FB37F", bgLight: "#147A4B", fg: "#FFFFFF" },
+  { src: "/images/testimonial-james.avif",    alt: "J. Mitchell" },
+  { src: "/images/testimonial-stuart.avif",   alt: "S. Barrett" },
+  { src: "/images/testimonial-michelle.avif", alt: "M. Holloway" },
 ];
 
 export const STATS = [
@@ -93,15 +93,18 @@ export const VALUE_PILLARS = [
 
 export const TESTIMONIALS = {
   primary: {
+    avatar: "/images/testimonial-stuart.avif",
     quote: "Knowing exactly what each van costs per month changed how I look at replacing the older ones. I had no idea there was that much difference between a van that looks fine and one that's quietly costing me.",
     attribution: "S. Barrett, Director · Plumbing & heating · 4 vans · Bristol",
   },
   secondary: [
     {
+      avatar: "/images/testimonial-james.avif",
       quote: "We had MOT reminders going to three different inboxes and still nearly missed one. FleetHive fixed that inside a week — van would have been off the road for three days.",
       attribution: "J. Mitchell, Owner · Electrical contractor · 6 vans · Cardiff",
     },
     {
+      avatar: "/images/testimonial-michelle.avif",
       quote: "Setup took about twenty minutes for all four vans. I wasn't expecting it to be that quick. The records view alone is worth it — everything's just there.",
       attribution: "R. Thompson, Director · Groundworks contractor · 4 vans · Leeds",
     },

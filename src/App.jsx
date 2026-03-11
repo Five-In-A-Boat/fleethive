@@ -260,17 +260,15 @@ export default function FleetHive() {
               <div className="e5" style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
                 <div style={{ display: "flex", flexShrink: 0 }} aria-hidden="true">
                   {HERO_AVATARS.map((av, i) => (
-                    <div key={i} style={{
+                    <img key={i} src={av.src} alt={av.alt} style={{
                       width: 28, height: 28, borderRadius: "50%",
-                      background: av.bg || (isDark ? av.bgDark : av.bgLight),
                       border: `2px solid ${isDark ? "#080A0D" : "#FAF7F2"}`,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      fontFamily: "Manrope,sans-serif", fontSize: "9px", fontWeight: 800,
-                      color: av.fg,
+                      objectFit: "cover",
                       marginLeft: i > 0 ? -8 : 0,
                       zIndex: 3 - i, position: "relative",
                       flexShrink: 0,
-                    }}>{av.initials}</div>
+                      display: "block",
+                    }} />
                   ))}
                 </div>
                 <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".625rem", fontWeight: 600, color: isDark ? "#7A8A9A" : "#9C9590", letterSpacing: ".07em" }}>
@@ -457,9 +455,10 @@ export default function FleetHive() {
               <p style={{ fontFamily: "Manrope,sans-serif", fontSize: "clamp(1.5rem,3.5vw,2.25rem)", fontWeight: 500, fontStyle: "italic", lineHeight: 1.5, letterSpacing: "-0.025em", color: theme.invText, marginBottom: "2rem", maxWidth: "56rem" }}>
                 "{TESTIMONIALS.primary.quote}"
               </p>
-              <footer>
+              <footer style={{ display: "flex", alignItems: "center", gap: ".75rem" }}>
+                <img src={TESTIMONIALS.primary.avatar} alt="" aria-hidden="true" style={{ width: 36, height: 36, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
                 <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".6875rem", fontWeight: 600, color: theme.invMuted, letterSpacing: ".06em", textTransform: "uppercase" }}>
-                  — {TESTIMONIALS.primary.attribution}
+                  {TESTIMONIALS.primary.attribution}
                 </span>
               </footer>
             </blockquote>
@@ -470,8 +469,9 @@ export default function FleetHive() {
                   <p style={{ fontFamily: "Manrope,sans-serif", fontSize: "clamp(1rem,2vw,1.25rem)", fontWeight: 450, fontStyle: "italic", lineHeight: 1.65, letterSpacing: "-0.015em", color: theme.invMuted, marginBottom: "1.25rem" }}>
                     "{q.quote}"
                   </p>
-                  <footer>
-                    <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".5625rem", fontWeight: 600, color: theme.invFaint, letterSpacing: ".06em", textTransform: "uppercase" }}>— {q.attribution}</span>
+                  <footer style={{ display: "flex", alignItems: "center", gap: ".625rem" }}>
+                    <img src={q.avatar} alt="" aria-hidden="true" style={{ width: 30, height: 30, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
+                    <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".5625rem", fontWeight: 600, color: theme.invFaint, letterSpacing: ".06em", textTransform: "uppercase" }}>{q.attribution}</span>
                   </footer>
                 </blockquote>
               ))}
