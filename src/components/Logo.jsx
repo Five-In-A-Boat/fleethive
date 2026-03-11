@@ -39,7 +39,7 @@ const Logo = ({ isDark, height = 24, showStrapline = true }) => {
   const textColor = isDark ? "#EAE6E0" : "#12100E";
   const strapColor = isDark ? "rgba(234,230,224,0.4)" : "rgba(18,16,14,0.38)";
   const iconSize = height * 1.3;
-  const strapSize = height * 0.32;
+  const strapSize = Math.max(height * 0.32, 10);
 
   return (
     <div style={{ display: "flex", alignItems: "center", gap: height * 0.4 }}>
