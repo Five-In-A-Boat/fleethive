@@ -280,7 +280,7 @@ export default function FleetHive() {
             </div>
 
             {/* Hero visual — reminder card */}
-            <div className="hero-vis ecard" style={{ display: "flex", justifyContent: "flex-end", alignItems: "flex-start", paddingTop: "1rem" }}>
+            <div className="hero-vis ecard" style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
               <div className="mockbob" style={{ width: "100%", maxWidth: 340 }}>
                 <div style={{ background: theme.surface, border: `1px solid ${theme.border}`, borderRadius: "1.5rem", padding: "2.25rem",
                   boxShadow: isDark
@@ -323,8 +323,8 @@ export default function FleetHive() {
           </div>
 
           {/* Partner logos */}
-          <div style={{ maxWidth: "72rem", margin: "0 auto", padding: "2.5rem 0 0.5rem" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", alignItems: "center", gap: "0.75rem" }}>
+          <div style={{ maxWidth: "56rem", margin: "0 auto", padding: "3.5rem 0 0.5rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", alignItems: "center", gap: "1.5rem" }}>
               {PARTNER_LOGOS.map(logo => (
                 <div key={logo.name} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <img
