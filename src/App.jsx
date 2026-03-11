@@ -468,7 +468,7 @@ export default function FleetHive() {
         {menu&&(
           <div style={{ background:t.bg2,borderTop:`1px solid ${t.border}`,padding:"1rem 1.5rem 1.5rem" }}>
             {["For trades","How it works","Pricing"].map(l=>(
-              <a key={l} href="#" onClick={()=>setMenu(false)} style={{ display:"block",padding:"12px 0",color:t.text,textDecoration:"none",fontSize:".9375rem",fontWeight:500,borderBottom:`1px solid ${t.border}` }}>{l}</a>
+              <a key={l} href={`#${l==="For trades"?"main":l==="Pricing"?"pricing":"product"}`} onClick={()=>setMenu(false)} style={{ display:"block",padding:"12px 0",color:t.text,textDecoration:"none",fontSize:".9375rem",fontWeight:500,borderBottom:`1px solid ${t.border}` }}>{l}</a>
             ))}
             <div style={{ display:"flex",gap:8,marginTop:"1.25rem" }}>
               <a href="https://vloot.in/auth/login" style={{ ...GBtn(),flex:1,justifyContent:"center",fontSize:".875rem" }}>Log in</a>
