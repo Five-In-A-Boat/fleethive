@@ -135,7 +135,7 @@ export default function FleetHive() {
       }}>
         <div style={{ maxWidth: "72rem", margin: "0 auto", padding: "0 1.5rem", display: "flex", alignItems: "center", height: 64, gap: "1.5rem" }}>
           <a href="/" aria-label="FleetHive home" style={{ textDecoration: "none", flexShrink: 0, display: "flex", alignItems: "center" }}>
-            <Logo isDark={isDark} height={22} />
+            <Logo isDark={isDark} height={22} showStrapline={true} />
           </a>
 
           <nav aria-label="Primary" className="hm" style={{ display: "flex", gap: 2, flex: 1 }}>
@@ -631,7 +631,7 @@ export default function FleetHive() {
       <footer role="contentinfo" style={{ background: theme.bg3, borderTop: `1px solid ${theme.border}`, padding: "2rem 1.5rem" }}>
         <div style={{ maxWidth: "72rem", margin: "0 auto", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", flexWrap: "wrap" }}>
-            <Logo isDark={isDark} height={18} />
+            <Logo isDark={isDark} height={18} showStrapline={false} />
             <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".5625rem", fontWeight: 500, color: theme.faint, letterSpacing: ".06em", textTransform: "uppercase" }}>© 2025 FleetHive Ltd</span>
           </div>
           <nav aria-label="Footer" style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
