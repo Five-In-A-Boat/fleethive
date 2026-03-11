@@ -20,8 +20,8 @@ const T = {
     nav:       "rgba(250,247,242,0.92)",
     inv:       "#12100E",
     invText:   "#F5F2EE",
-    invMuted:  "#5A5550",
-    invFaint:  "#2A2520",
+    invMuted:  "#A09890",
+    invFaint:  "#6A6060",
     invBdr:    "#2A2520",
     togBg:     "#FFFFFF",
     togBdr:    "#DDD8D0",
@@ -395,7 +395,7 @@ export default function FleetHive() {
         .hero-vis{order:-1;justify-content:center;}
         .pil-g{grid-template-columns:1fr!important;}
         .feat-g{grid-template-columns:1fr!important;}
-        .obj-g{grid-template-columns:1fr!important;}
+        .obj-g{grid-template-columns:1fr!important;} .price-g{grid-template-columns:1fr!important;}
         .mob-bar{display:block!important;}
         .stat-g{grid-template-columns:1fr!important;}
         body{padding-bottom:72px;}
@@ -432,8 +432,8 @@ export default function FleetHive() {
           </a>
 
           <nav aria-label="Primary" className="hm" style={{ display:"flex",gap:2,flex:1 }}>
-            {["For trades","How it works","Pricing"].map(l=>(
-              <a key={l} href={`#${l==="For trades"?"main":l==="Pricing"?"pricing":"product"}`} className="nl"
+            {["How it works","Pricing","Book a call"].map(l=>(
+              <a key={l} href={l==="Book a call"?"https://calendly.com/fleethive":l==="Pricing"?"#pricing":"#product"} className="nl" target={l==="Book a call"?"_blank":undefined} rel={l==="Book a call"?"noopener noreferrer":undefined}
                 style={{ color:t.muted }}
                 onMouseEnter={e=>e.currentTarget.style.color=t.text}
                 onMouseLeave={e=>e.currentTarget.style.color=t.muted}>{l}</a>
@@ -467,8 +467,8 @@ export default function FleetHive() {
 
         {menu&&(
           <div style={{ background:t.bg2,borderTop:`1px solid ${t.border}`,padding:"1rem 1.5rem 1.5rem" }}>
-            {["For trades","How it works","Pricing"].map(l=>(
-              <a key={l} href="#" onClick={()=>setMenu(false)} style={{ display:"block",padding:"12px 0",color:t.text,textDecoration:"none",fontSize:".9375rem",fontWeight:500,borderBottom:`1px solid ${t.border}` }}>{l}</a>
+            {["How it works","Pricing","Book a call"].map(l=>(
+              <a key={l} href={l==="Book a call"?"https://calendly.com/fleethive":l==="Pricing"?"#pricing":"#product"} onClick={()=>setMenu(false)} target={l==="Book a call"?"_blank":undefined} rel={l==="Book a call"?"noopener noreferrer":undefined} style={{ display:"block",padding:"12px 0",color:t.text,textDecoration:"none",fontSize:".9375rem",fontWeight:500,borderBottom:`1px solid ${t.border}` }}>{l}</a>
             ))}
             <div style={{ display:"flex",gap:8,marginTop:"1.25rem" }}>
               <a href="https://vloot.in/auth/login" style={{ ...GBtn(),flex:1,justifyContent:"center",fontSize:".875rem" }}>Log in</a>
@@ -500,7 +500,7 @@ export default function FleetHive() {
 
             <div>
               <div className="e1" style={{ marginBottom:"1.5rem" }}>
-                <span style={EB}>For trades businesses</span>
+                <span style={EB}>For small businesses &amp; households</span>
               </div>
 
               <h1 className="h1-pull" style={{ fontFamily:"Manrope,sans-serif",lineHeight:1.0,marginBottom:"1.5rem",marginLeft:"-0.25rem" }}>
@@ -545,8 +545,8 @@ export default function FleetHive() {
                 <a href="https://vloot.in/onboarding/new" className="bp" style={PBtn()}>
                   Get started free <Ic d={I.arrow} s={15} stroke={T.Ytext}/>
                 </a>
-                <a href="/for-households" className="bg" style={GBtn()}>
-                  For households <Ic d={I.arrowR} s={14} stroke={t.text} sw={2}/>
+                <a href="#product" className="bg" style={GBtn()}>
+                  How it works <Ic d={I.arrowR} s={14} stroke={t.text} sw={2}/>
                 </a>
               </div>
 
@@ -580,7 +580,7 @@ export default function FleetHive() {
                   ))}
                 </div>
                 <p style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".625rem",fontWeight:600,color:isDark?"#7A8A9A":"#9C9590",letterSpacing:".07em" }}>
-                  ELECTRICIANS, PLUMBERS &amp; GROUNDWORKERS ACROSS THE UK
+                  ELECTRICIANS, PLUMBERS &amp; HOUSEHOLDS ACROSS THE UK
                 </p>
               </div>
             </div>
@@ -830,72 +830,151 @@ export default function FleetHive() {
         {/* ══════════════════ §6 PRICING ══════════════════ */}
         <section id="pricing" aria-labelledby="price-h" style={{ padding:"7rem 1.5rem",background:t.bg }}>
           <div style={{ maxWidth:"72rem",margin:"0 auto" }}>
-            <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-end",marginBottom:"4rem",flexWrap:"wrap",gap:"1rem" }}>
-              <div>
-                <h2 id="price-h" style={{ ...SH, marginBottom:".75rem" }}>Simple pricing.</h2>
-                <p style={{ fontSize:"1.0625rem",color:t.muted,lineHeight:1.72,fontWeight:450,letterSpacing:"-.01em",maxWidth:"38rem" }}>
-                  One plan. Built for businesses running 2–15 vehicles. No setup fee, no contract, no surprises.
-                </p>
-              </div>
-              <span style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".625rem",fontWeight:600,color:t.faint,letterSpacing:".08em",textTransform:"uppercase" }}>Pricing</span>
+            {/* Header */}
+            <div style={{ textAlign:"center",marginBottom:"4rem" }}>
+              <h2 id="price-h" style={{ ...SH, marginBottom:".75rem" }}>Simple, transparent pricing.</h2>
+              <p style={{ fontSize:"1.0625rem",color:t.muted,lineHeight:1.72,fontWeight:450,letterSpacing:"-.01em",maxWidth:"38rem",margin:"0 auto" }}>
+                Start free. No setup fee, no contract, no surprises.
+              </p>
             </div>
-
-            {/* Pricing card — centred, single */}
-            <div style={{ maxWidth:480,margin:"0 auto" }}>
+            {/* Three cards */}
+            <div className="price-g" style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"1.5rem",alignItems:"start" }}>
+              {/* ── FREE ── */}
               <div style={{
-                background:t.priceBg,
-                border:`1px solid ${t.priceBdr}`,
-                borderRadius:"1.5rem",
-                overflow:"hidden",
-                boxShadow:isDark?"0 32px 80px rgba(0,0,0,0.5)":"0 16px 50px rgba(18,16,14,0.10)",
+                background:t.priceBg,border:`1px solid ${t.priceBdr}`,
+                borderRadius:"1.25rem",overflow:"hidden",
+                boxShadow:isDark?"0 8px 32px rgba(0,0,0,0.35)":"0 4px 20px rgba(18,16,14,0.07)",
               }}>
-                {/* Yellow top band */}
-                <div style={{ background:T.Y,padding:"1.5rem 2rem" }}>
-                  <div style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".625rem",fontWeight:600,letterSpacing:".10em",textTransform:"uppercase",color:T.Ytext,marginBottom:".5rem",opacity:.7 }}>For trades businesses</div>
-                  <div style={{ display:"flex",alignItems:"baseline",gap:".5rem" }}>
-                    <span style={{ fontFamily:"Manrope,sans-serif",fontSize:"3rem",fontWeight:800,letterSpacing:"-0.05em",color:T.Ytext,lineHeight:1 }}>£29</span>
-                    <span style={{ fontFamily:"Manrope,sans-serif",fontSize:"1rem",fontWeight:600,color:`${T.Ytext}88` }}>/month</span>
+                {/* Tier label */}
+                <div style={{ padding:"1.25rem 1.75rem .75rem",borderBottom:`1px solid ${t.priceBdr}` }}>
+                  <div style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".5625rem",fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",color:t.muted,marginBottom:".625rem" }}>Free</div>
+                  <div style={{ display:"flex",alignItems:"baseline",gap:".375rem",marginBottom:".25rem" }}>
+                    <span style={{ fontFamily:"Manrope,sans-serif",fontSize:"2.625rem",fontWeight:800,letterSpacing:"-0.05em",color:t.text,lineHeight:1 }}>£0</span>
+                    <span style={{ fontFamily:"Manrope,sans-serif",fontSize:".875rem",fontWeight:500,color:t.muted }}>/month</span>
                   </div>
-                  <div style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".625rem",color:`${T.Ytext}77`,letterSpacing:".04em",marginTop:".375rem" }}>Up to 10 vehicles · Additional vehicles £2/month</div>
+                  <div style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".5625rem",color:t.muted,letterSpacing:".04em",marginTop:".25rem" }}>1 vehicle</div>
                 </div>
-
-                {/* Body */}
-                <div style={{ padding:"2rem" }}>
-                  {/* Free trial callout */}
-                  <div style={{ background:t.priceAcct,border:`1px solid ${T.Y}33`,borderRadius:8,padding:".875rem 1rem",marginBottom:"1.75rem",display:"flex",alignItems:"center",gap:10 }}>
-                    <Ic d={I.zap} s={14} fill={T.Ymid} stroke="none"/>
-                    <span style={{ fontFamily:"Manrope,sans-serif",fontSize:".875rem",fontWeight:600,color:t.text,letterSpacing:"-.01em" }}>Start free — no card required for 14 days</span>
-                  </div>
-
-                  {/* Feature list */}
-                  <ul style={{ listStyle:"none",display:"flex",flexDirection:"column",gap:".75rem",marginBottom:"2rem" }}>
+                {/* Features */}
+                <div style={{ padding:"1.5rem 1.75rem" }}>
+                  <ul style={{ listStyle:"none",display:"flex",flexDirection:"column",gap:".6rem",marginBottom:"1.75rem" }}>
                     {[
-                      "MOT, service, insurance, and tax reminders",
-                      "Running cost tracking per vehicle",
-                      "Service records and invoice storage",
-                      "Unlimited history and document uploads",
-                      "All vehicles in one dashboard",
-                      "Cancel anytime — no contract",
+                      "Action Calendar",
+                      "Easy service bookings",
+                      "Core maintenance tracking",
                     ].map(f=>(
-                      <li key={f} style={{ display:"flex",alignItems:"flex-start",gap:10 }}>
-                        <div style={{ width:18,height:18,borderRadius:"50%",background:`${T.Y}18`,border:`1px solid ${T.Y}33`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:1 }}>
-                          <Ic d={I.check} s={10} stroke={T.Ymid} sw={2.5}/>
+                      <li key={f} style={{ display:"flex",alignItems:"flex-start",gap:9 }}>
+                        <div style={{ width:16,height:16,borderRadius:"50%",background:`${t.priceBdr}`,border:`1px solid ${t.priceBdr}`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:2 }}>
+                          <Ic d={I.check} s={9} stroke={t.muted} sw={2.5}/>
                         </div>
-                        <span style={{ fontSize:".9375rem",color:t.text,fontWeight:450,letterSpacing:"-.005em",lineHeight:1.5 }}>{f}</span>
+                        <span style={{ fontSize:".9rem",color:t.text,fontWeight:450,lineHeight:1.5 }}>{f}</span>
                       </li>
                     ))}
                   </ul>
-
-                  <a href="https://vloot.in/onboarding/new" className="bp" style={PBtn({width:"100%",justifyContent:"center",padding:"14px 0",fontSize:"1rem"})}>
-                    Start free — no card needed <Ic d={I.arrow} s={15} stroke={T.Ytext}/>
+                  <a href="https://vloot.in/onboarding/new" style={{
+                    display:"flex",alignItems:"center",justifyContent:"center",gap:6,
+                    width:"100%",padding:"11px 0",borderRadius:8,
+                    fontFamily:"Manrope,sans-serif",fontSize:".875rem",fontWeight:700,letterSpacing:"-.01em",
+                    border:`1.5px solid ${t.priceBdr}`,background:"transparent",
+                    color:t.text,textDecoration:"none",boxSizing:"border-box",
+                  }}>
+                    Get started free <Ic d={I.arrow} s={13} stroke={t.text} sw={2.5}/>
                   </a>
-
-                  <p style={{ textAlign:"center",marginTop:"1rem",fontFamily:"'IBM Plex Mono',monospace",fontSize:".5625rem",color:t.faint,letterSpacing:".06em",textTransform:"uppercase" }}>
-                    14-day free trial · Then £29/month · Cancel anytime
-                  </p>
                 </div>
               </div>
-            </div>
+              {/* ── PRO (featured) ── */}
+              <div style={{
+                background:isDark?"#111720":"#FFFFFF",
+                border:`1.5px solid ${T.Y}`,
+                borderRadius:"1.25rem",overflow:"hidden",
+                boxShadow:isDark?"0 24px 64px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,200,61,0.15)":"0 16px 48px rgba(18,16,14,0.13), 0 0 0 1px rgba(214,162,29,0.2)",
+                position:"relative",transform:"translateY(-12px)",
+              }}>
+                {/* Recommended pill */}
+                <div style={{ position:"absolute",top:-1,left:"50%",transform:"translateX(-50%)" }}>
+                  <div style={{ background:T.Y,color:T.Ytext,fontFamily:"'IBM Plex Mono',monospace",fontSize:".5rem",fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",padding:"4px 14px",borderRadius:"0 0 8px 8px",whiteSpace:"nowrap" }}>Most popular</div>
+                </div>
+                {/* Yellow top band */}
+                <div style={{ background:T.Y,padding:"1.625rem 1.75rem 1.125rem",marginTop:20 }}>
+                  <div style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".5625rem",fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",color:T.Ytext,opacity:.75,marginBottom:".625rem" }}>Pro</div>
+                  <div style={{ display:"flex",alignItems:"baseline",gap:".375rem",marginBottom:".25rem" }}>
+                    <span style={{ fontFamily:"Manrope,sans-serif",fontSize:"2.625rem",fontWeight:800,letterSpacing:"-0.05em",color:T.Ytext,lineHeight:1 }}>£12.95</span>
+                    <span style={{ fontFamily:"Manrope,sans-serif",fontSize:".875rem",fontWeight:500,color:`${T.Ytext}99` }}>/month</span>
+                  </div>
+                  <div style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".5625rem",color:`${T.Ytext}88`,letterSpacing:".04em",marginTop:".25rem" }}>2–5 vehicles · inc. VAT</div>
+                </div>
+                {/* Features */}
+                <div style={{ padding:"1.5rem 1.75rem" }}>
+                  <ul style={{ listStyle:"none",display:"flex",flexDirection:"column",gap:".6rem",marginBottom:"1.75rem" }}>
+                    {[
+                      "Everything in Free",
+                      "Full spend benchmarks",
+                      "Cost forecasting",
+                      "Multi-vehicle control",
+                    ].map(f=>(
+                      <li key={f} style={{ display:"flex",alignItems:"flex-start",gap:9 }}>
+                        <div style={{ width:16,height:16,borderRadius:"50%",background:`${T.Y}22`,border:`1px solid ${T.Y}55`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:2 }}>
+                          <Ic d={I.check} s={9} stroke={T.Ymid} sw={2.5}/>
+                        </div>
+                        <span style={{ fontSize:".9rem",color:t.text,fontWeight:450,lineHeight:1.5 }}>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a href="https://vloot.in/onboarding/new" className="bp" style={{ ...PBtn({width:"100%",justifyContent:"center",padding:"12px 0",fontSize:".9375rem",borderRadius:8,textDecoration:"none"}) }}>
+                    Start free trial <Ic d={I.arrow} s={14} stroke={T.Ytext} sw={2.5}/>
+                  </a>
+                  <p style={{ textAlign:"center",marginTop:".75rem",fontFamily:"'IBM Plex Mono',monospace",fontSize:".5rem",color:t.faint,letterSpacing:".06em",textTransform:"uppercase" }}>14-day free trial · No card needed</p>
+                </div>
+              </div>
+              {/* ── FLEET ── */}
+              <div style={{
+                background:t.priceBg,border:`1px solid ${t.priceBdr}`,
+                borderRadius:"1.25rem",overflow:"hidden",
+                boxShadow:isDark?"0 8px 32px rgba(0,0,0,0.35)":"0 4px 20px rgba(18,16,14,0.07)",
+              }}>
+                {/* Tier label */}
+                <div style={{ padding:"1.25rem 1.75rem .75rem",borderBottom:`1px solid ${t.priceBdr}` }}>
+                  <div style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".5625rem",fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",color:t.muted,marginBottom:".625rem" }}>Fleet</div>
+                  <div style={{ display:"flex",alignItems:"baseline",gap:".375rem",marginBottom:".25rem" }}>
+                    <span style={{ fontFamily:"Manrope,sans-serif",fontSize:"2.625rem",fontWeight:800,letterSpacing:"-0.05em",color:t.text,lineHeight:1 }}>£19.85</span>
+                    <span style={{ fontFamily:"Manrope,sans-serif",fontSize:".875rem",fontWeight:500,color:t.muted }}>/month</span>
+                  </div>
+                  <div style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".5625rem",color:t.muted,letterSpacing:".04em",marginTop:".25rem" }}>6–10 vehicles · inc. VAT</div>
+                  <div style={{ display:"inline-flex",alignItems:"center",gap:5,marginTop:".5rem",background:isDark?"rgba(125,166,255,0.10)":"rgba(47,111,237,0.07)",border:`1px solid ${isDark?"rgba(125,166,255,0.2)":"rgba(47,111,237,0.15)"}`,borderRadius:5,padding:"3px 8px" }}>
+                    <span style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".5rem",fontWeight:600,color:isDark?"#7DA6FF":"#2F6FED",letterSpacing:".06em",textTransform:"uppercase" }}>+£1.50 inc. VAT per extra vehicle</span>
+                  </div>
+                </div>
+                {/* Features */}
+                <div style={{ padding:"1.5rem 1.75rem" }}>
+                  <ul style={{ listStyle:"none",display:"flex",flexDirection:"column",gap:".6rem",marginBottom:"1.75rem" }}>
+                    {[
+                      "Everything in Pro",
+                      "Multi-user access",
+                      "Extended vehicle range",
+                    ].map(f=>(
+                      <li key={f} style={{ display:"flex",alignItems:"flex-start",gap:9 }}>
+                        <div style={{ width:16,height:16,borderRadius:"50%",background:`${t.priceBdr}`,border:`1px solid ${t.priceBdr}`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:2 }}>
+                          <Ic d={I.check} s={9} stroke={t.muted} sw={2.5}/>
+                        </div>
+                        <span style={{ fontSize:".9rem",color:t.text,fontWeight:450,lineHeight:1.5 }}>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a href="https://vloot.in/onboarding/new" style={{
+                    display:"flex",alignItems:"center",justifyContent:"center",gap:6,
+                    width:"100%",padding:"11px 0",borderRadius:8,
+                    fontFamily:"Manrope,sans-serif",fontSize:".875rem",fontWeight:700,letterSpacing:"-.01em",
+                    border:`1.5px solid ${t.priceBdr}`,background:"transparent",
+                    color:t.text,textDecoration:"none",boxSizing:"border-box",
+                  }}>
+                    Get started free <Ic d={I.arrow} s={13} stroke={t.text} sw={2.5}/>
+                  </a>
+                </div>
+              </div>
+            </div>{/* end price-g */}
+            {/* Footer note */}
+            <p style={{ textAlign:"center",marginTop:"2.5rem",fontFamily:"'IBM Plex Mono',monospace",fontSize:".5625rem",color:t.faint,letterSpacing:".06em",textTransform:"uppercase" }}>
+              All plans · Cancel anytime · No setup fee · Community buying rates included
+            </p>
           </div>
         </section>
 
@@ -989,8 +1068,8 @@ export default function FleetHive() {
               <a href="https://vloot.in/onboarding/new" className="bp" style={PBtn({padding:"15px 34px",fontSize:"1rem"})}>
                 Get started free <Ic d={I.arrow} s={16} stroke={T.Ytext}/>
               </a>
-              <a href="/for-households" className="bg" style={GBtn({padding:"15px 34px",fontSize:"1rem"})}>
-                For households <Ic d={I.arrowR} s={14} stroke={t.text} sw={2}/>
+              <a href="https://calendly.com/fleethive" target="_blank" rel="noopener noreferrer" className="bg" style={GBtn({padding:"15px 34px",fontSize:"1rem"})}>
+                Book a meeting <Ic d={I.arrowR} s={14} stroke={t.text} sw={2}/>
               </a>
             </div>
             <p style={{ fontFamily:"'IBM Plex Mono',monospace",fontSize:".5625rem",fontWeight:600,color:t.faint,letterSpacing:".08em",textTransform:"uppercase" }}>
