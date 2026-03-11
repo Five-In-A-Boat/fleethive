@@ -135,7 +135,7 @@ export default function FleetHive() {
       }}>
         <div style={{ maxWidth: "72rem", margin: "0 auto", padding: "0 1.5rem", display: "flex", alignItems: "center", height: 64, gap: "1.5rem" }}>
           <a href="/" aria-label="FleetHive home" style={{ textDecoration: "none", flexShrink: 0, display: "flex", alignItems: "center" }}>
-            <Logo isDark={isDark} height={22} showStrapline={true} />
+            <Logo isDark={isDark} height={32} showStrapline={true} />
           </a>
 
           <nav aria-label="Primary" className="hm" style={{ display: "flex", gap: 2, flex: 1 }}>
