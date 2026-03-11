@@ -190,7 +190,7 @@ export default function FleetHive() {
         {/* ══════════════════ §1 HERO ══════════════════ */}
         <section aria-label="Hero" style={{
           position: "relative", overflow: "hidden",
-          padding: "6.5rem 1.5rem 8rem",
+          padding: "6.5rem 1.5rem 0",
           background: isDark
             ? "radial-gradient(ellipse 100% 55% at 50% -8%,rgba(255,200,61,0.12) 0%,transparent 55%),#080A0D"
             : "radial-gradient(ellipse 100% 55% at 50% -8%,rgba(214,162,29,0.09) 0%,transparent 55%),#FAF7F2",
@@ -323,7 +323,7 @@ export default function FleetHive() {
           </div>
 
           {/* Partner logos */}
-          <div style={{ maxWidth: "56rem", margin: "0 auto", padding: "3.5rem 0 0.5rem" }}>
+          <div style={{ maxWidth: "56rem", margin: "0 auto", padding: "4.5rem 0 5rem" }}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", alignItems: "center", gap: "1.5rem" }}>
               {PARTNER_LOGOS.map(logo => (
                 <div key={logo.name} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
