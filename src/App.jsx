@@ -88,7 +88,7 @@ const T = {
   Ytext: "#0A0800",
 };
 
-const BASE = "https://raw.githubusercontent.com/Five-In-A-Boat/fleethive/main/images/";
+const BASE = "/images/";
 const LOGOS = [
   { name:"Halfords",                 dark:"halfords_dark.svg",   light:"halfords_light.svg",   h:28 },
   { name:"Hi-Q",                     dark:"hiq_dark.svg",        light:"hiq_light.svg",        h:32 },
