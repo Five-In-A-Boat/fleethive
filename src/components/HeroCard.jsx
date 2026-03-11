@@ -73,7 +73,7 @@ export default function HeroCard({ isDark }) {
     >
       {/* Ghost cards */}
       {ghostCards.map((g, i) => {
-        const ghostOpacity = isDark ? (i === 0 ? 0.55 : 0.3) : (i === 0 ? 0.6 : 0.38);
+        const ghostOpacity = isDark ? (i === 0 ? 0.5 : 0.28) : (i === 0 ? 0.55 : 0.35);
         return (
           <div key={i} style={{
             position: "absolute",
@@ -202,7 +202,8 @@ export default function HeroCard({ isDark }) {
             <span style={{
               fontFamily: "'IBM Plex Mono',monospace", fontSize: ".5625rem", fontWeight: 700,
               color: green,
-              background: isDark ? "rgba(79,179,127,0.12)" : "rgba(20,122,75,0.08)",
+              background: isDark ? "rgba(79,179,127,0.15)" : "rgba(20,122,75,0.10)",
+              border: `1px solid ${isDark ? "rgba(79,179,127,0.30)" : "rgba(20,122,75,0.22)"}`,
               padding: "2px 6px", borderRadius: 3,
               opacity: badgePopped ? 1 : 0,
               transform: badgePopped ? "scale(1)" : "scale(0.5)",

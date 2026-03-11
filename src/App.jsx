@@ -213,11 +213,11 @@ export default function FleetHive() {
           <div className="hero-g" style={{ maxWidth: "72rem", margin: "0 auto", display: "grid", gridTemplateColumns: "58fr 42fr", gap: "4rem", alignItems: "center", position: "relative" }}>
 
             <div>
-              <div className="e1" style={{ marginBottom: "1.5rem" }}>
+              <div className="e1" style={{ marginBottom: "1rem" }}>
                 <span style={eyebrow}>For small businesses &amp; households</span>
               </div>
 
-              <h1 className="h1-pull" style={{ fontFamily: "Manrope,sans-serif", lineHeight: 1.0, marginBottom: "1.5rem", marginLeft: "-0.25rem" }}>
+              <h1 className="h1-pull" style={{ fontFamily: "Manrope,sans-serif", lineHeight: 1.0, marginBottom: "1.5rem", marginLeft: "-0.35rem" }}>
                 {["Every vehicle.", "Every date."].map(txt => (
                   <span key={txt} className={txt === "Every vehicle." ? "e1" : "e2"} style={{
                     display: "block",
@@ -259,7 +259,7 @@ export default function FleetHive() {
               </div>
 
               <div className="e5" style={{ marginBottom: "2rem" }}>
-                <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".625rem", fontWeight: 600, color: isDark ? "#7A8A9A" : "#9C9590", letterSpacing: ".07em" }}>
+                <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".625rem", fontWeight: 600, color: theme.faint, letterSpacing: ".07em" }}>
                   FREE TO START · NO CREDIT CARD · SETUP IN UNDER 10 MINUTES
                 </p>
               </div>
@@ -278,7 +278,7 @@ export default function FleetHive() {
                     }} />
                   ))}
                 </div>
-                <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".625rem", fontWeight: 600, color: isDark ? "#7A8A9A" : "#9C9590", letterSpacing: ".07em" }}>
+                <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".625rem", fontWeight: 600, color: theme.faint, letterSpacing: ".07em" }}>
                   ELECTRICIANS, PLUMBERS &amp; HOUSEHOLDS ACROSS THE UK
                 </p>
               </div>
@@ -299,7 +299,7 @@ export default function FleetHive() {
                   <img
                     src={LOGO_BASE_PATH + (isDark ? logo.dark : logo.light)}
                     alt={logo.name}
-                    style={{ height: logo.height, width: "auto", maxWidth: "100%" }}
+                    style={{ height: logo.height, width: "auto", maxWidth: "100%", filter: isDark ? "none" : "grayscale(1) brightness(0.35) contrast(1.2)" }}
                   />
                 </div>
               ))}
