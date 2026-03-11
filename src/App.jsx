@@ -9,6 +9,7 @@ import {
 } from "./data";
 import Logo from "./components/Logo";
 import { MockReminder, MockCosts, MockRecords } from "./components/Mocks";
+import HeroCard from "./components/HeroCard";
 
 const MOCK_COMPONENTS = [MockReminder, MockCosts, MockRecords];
 
@@ -60,7 +61,14 @@ export default function FleetHive() {
 
       @keyframes fadeUp  { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:translateY(0)} }
       @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
-      @keyframes bobble  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+      @keyframes ghostSlideUp{from{opacity:0;transform:translateY(30px) scale(var(--g-scale,0.9))}to{opacity:var(--g-opacity,0.5);transform:translateY(0) scale(var(--g-scale,0.9))}}
+      @keyframes mainEntrance{0%{opacity:0;transform:translateY(50px) scale(0.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
+      @keyframes transitDrive{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+      @keyframes dotPulse{0%{transform:scale(1);opacity:.5}70%{transform:scale(2.6);opacity:0}100%{transform:scale(2.6);opacity:0}}
+      @keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+      .dot-ring{animation:dotPulse 2.8s ease-out 3.5s infinite}
+      .hero-cta:hover{background:#FFD860!important;transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,255,255,.22) inset,0 8px 28px rgba(255,200,61,.4)!important}
+      .hero-cta:active{transform:translateY(0)!important}
 
       @keyframes tickIn  { from{transform:translateY(100%);opacity:0} to{transform:translateY(0);opacity:1} }
       @keyframes tickOut { from{transform:translateY(0);opacity:1}    to{transform:translateY(-100%);opacity:0} }
@@ -73,7 +81,6 @@ export default function FleetHive() {
       .e4{animation:fadeUp .65s cubic-bezier(.22,1,.36,1) .41s both}
       .e5{animation:fadeUp .65s cubic-bezier(.22,1,.36,1) .53s both}
       .ecard{animation:fadeIn .9s cubic-bezier(.22,1,.36,1) .2s both;animation-fill-mode:both}
-      .mockbob{animation:bobble 8s ease-in-out 1.5s infinite}
 
       .bp:hover{background:#FFD860!important;transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.22) inset,0 12px 40px rgba(255,200,61,.50)!important;}
       .bp:active{transform:translateY(0)!important;}
@@ -279,43 +286,7 @@ export default function FleetHive() {
 
             {/* Hero visual — reminder card */}
             <div className="hero-vis ecard" style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
-              <div className="mockbob" style={{ width: "100%", maxWidth: 340 }}>
-                <div style={{ background: theme.surface, border: `1px solid ${theme.border}`, borderRadius: "1.5rem", padding: "2.25rem",
-                  boxShadow: isDark
-                    ? "0 40px 80px rgba(0,0,0,0.7),0 2px 0 rgba(255,255,255,0.06) inset,0 0 80px rgba(255,200,61,0.08)"
-                    : "0 24px 60px rgba(18,16,14,0.12),0 4px 12px rgba(18,16,14,0.06),0 1px 0 rgba(255,255,255,0.9) inset",
-                }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: "2rem" }}>
-                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: tokens.yellow, boxShadow: `0 0 0 3px ${tokens.yellow}33`, flexShrink: 0 }} />
-                    <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".625rem", fontWeight: 600, letterSpacing: ".12em", textTransform: "uppercase", color: theme.muted, flex: 1 }}>Upcoming · Service due</span>
-                    <span style={{
-                      fontFamily: "'IBM Plex Mono',monospace", fontSize: ".5625rem", fontWeight: 700,
-                      letterSpacing: ".06em", textTransform: "uppercase",
-                      background: isDark ? "rgba(79,179,127,0.15)" : "rgba(20,122,75,0.10)",
-                      color: isDark ? "#4FB37F" : "#147A4B",
-                      border: `1px solid ${isDark ? "rgba(79,179,127,0.30)" : "rgba(20,122,75,0.22)"}`,
-                      padding: "2px 7px", borderRadius: 4, whiteSpace: "nowrap",
-                    }}>Community rate</span>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: ".5rem", marginBottom: "1.25rem" }}>
-                    <span style={{ fontFamily: "Manrope,sans-serif", fontSize: "5.5rem", fontWeight: 800, letterSpacing: "-0.055em", lineHeight: 1, color: tokens.yellow }}>14</span>
-                    <span style={{ fontFamily: "Manrope,sans-serif", fontSize: "1.5rem", fontWeight: 600, color: theme.muted, letterSpacing: "-0.02em" }}>days</span>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: "1.25rem" }}>
-                    <span style={{ fontFamily: "Manrope,sans-serif", fontSize: ".875rem", fontWeight: 450, color: theme.muted, textDecoration: "line-through" }}>£340</span>
-                    <span style={{ fontFamily: "Manrope,sans-serif", fontSize: ".9375rem", fontWeight: 700, color: isDark ? "#4FB37F" : "#147A4B" }}>£272 with FleetHive rate</span>
-                    <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".5625rem", fontWeight: 700, color: isDark ? "#4FB37F" : "#147A4B", background: isDark ? "rgba(79,179,127,0.12)" : "rgba(20,122,75,0.08)", padding: "2px 6px", borderRadius: 3 }}>SAVE 20%</span>
-                  </div>
-                  <div style={{ height: 1, background: theme.border, marginBottom: "1.25rem" }} />
-                  <div style={{ marginBottom: "1.5rem" }}>
-                    <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".875rem", fontWeight: 600, color: theme.text, letterSpacing: ".04em", marginBottom: 4 }}>EK22 XPL</div>
-                    <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".75rem", color: theme.muted, letterSpacing: ".02em" }}>Ford Transit Connect · 2022</div>
-                  </div>
-                  <a href={URLS.onboarding} className="bp" style={{ ...primaryButton({ width: "100%", justifyContent: "center", padding: "10px 0", fontSize: ".8125rem", borderRadius: 8, textDecoration: "none" }) }}>
-                    Book service now <Icon d={iconPaths.arrow} size={13} stroke={tokens.yellowText} strokeWidth={2.5} />
-                  </a>
-                </div>
-              </div>
+              <HeroCard isDark={isDark} />
             </div>
 
           </div>
