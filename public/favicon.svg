@@ -1,6 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
-  <rect width="48" height="48" rx="10" fill="#0A0800"/>
-  <!-- Three-hex honeycomb cluster, R=10.5, fills ~85% of viewbox, vertically centred -->
   <!-- Bottom-left: centre (14.47, 32.5) -->
   <path d="M14.47,22L23.56,27.25L23.56,37.75L14.47,43L5.38,37.75L5.38,27.25Z" fill="#FFC83D" opacity="0.45"/>
   <!-- Bottom-right: centre (33.53, 32.5) -->
