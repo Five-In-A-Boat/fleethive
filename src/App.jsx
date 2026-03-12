@@ -615,9 +615,10 @@ export default function FleetHive() {
               <a href={URLS.onboarding} className="bp" style={primaryButton({ padding: "15px 34px", fontSize: "1rem" })}>
                 Get started free <Icon d={iconPaths.arrow} size={16} stroke={tokens.yellowText} />
               </a>
-              <a href={URLS.booking} target="_blank" rel="noopener noreferrer" className="bg" style={ghostButton(theme, { padding: "15px 34px", fontSize: "1rem" })}>
+              <button type="button" className="bg" style={{ ...ghostButton(theme, { padding: "15px 34px", fontSize: "1rem" }), cursor: "pointer" }}
+                onClick={() => window.Calendly?.initPopupWidget({ url: "https://calendly.com/jules-fiveinaboat/30min?hide_gdpr_banner=1" })}>
                 Book a meeting <Icon d={iconPaths.arrowR} size={14} stroke={theme.text} strokeWidth={2} />
-              </a>
+              </button>
             </div>
             <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".5625rem", fontWeight: 600, color: theme.faint, letterSpacing: ".08em", textTransform: "uppercase" }}>
               14-DAY FREE TRIAL · NO CREDIT CARD · CANCEL ANYTIME
