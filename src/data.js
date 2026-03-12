@@ -19,7 +19,7 @@ export const TICKER_WORDS = ["surprises.", "overspend.", "stress."];
 export const NAV_LINKS = [
   { label: "How it works", href: "#product" },
   { label: "Pricing",      href: "#pricing" },
-  { label: "Book a call",  href: "https://calendly.com/fleethive", external: true },
+  { label: "Book a meeting", href: "#start" },
 ];
 
 export const HERO_AVATARS = [
@@ -160,5 +160,5 @@ export const FOOTER_LINKS = ["Privacy", "Terms", "Contact"];
 export const URLS = {
   login: "https://vloot.in/auth/login",
   onboarding: "https://vloot.in/onboarding/new",
-  booking: "https://calendly.com/fleethive",
+  booking: "https://calendly.com/jules-fiveinaboat/30min",
 };
