@@ -299,7 +299,7 @@ export default function FleetHive() {
                   <img
                     src={LOGO_BASE_PATH + (isDark ? logo.dark : logo.light)}
                     alt={logo.name}
-                    style={{ height: logo.height, width: "auto", maxWidth: "100%", filter: isDark ? "none" : "grayscale(1) brightness(0.35) contrast(1.2)" }}
+                    style={{ height: logo.height, width: "auto", maxWidth: "100%" }}
                   />
                 </div>
               ))}
