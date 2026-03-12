@@ -55,7 +55,7 @@ const Logo = ({ isDark, height = 24, showStrapline = true }) => {
             fontFamily: "'IBM Plex Mono',monospace", fontWeight: 500,
             fontSize: strapSize, letterSpacing: "0.03em",
             color: strapColor, lineHeight: 1,
-          }}>Smarter &amp; Stronger Together</span>
+          }}>Smarter Together</span>
         )}
       </div>
     </div>
