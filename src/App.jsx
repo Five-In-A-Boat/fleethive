@@ -10,6 +10,7 @@ import {
 import Logo from "./components/Logo";
 import { MockReminder, MockCosts, MockRecords } from "./components/Mocks";
 import HeroCard from "./components/HeroCard";
+import PricingCards from "./components/PricingCards";
 
 const MOCK_COMPONENTS = [MockReminder, MockCosts, MockRecords];
 
@@ -113,6 +114,14 @@ export default function FleetHive() {
       @media(prefers-reduced-motion:reduce){
         *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;}
       }
+      .p-card{transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease}
+      .p-card:hover{transform:translateY(-5px)}
+      .p-cta-gold{transition:all .22s cubic-bezier(.22,1,.36,1)}
+      .p-cta-gold:hover{background:#FFD860!important;transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,255,255,.2) inset,0 10px 28px rgba(255,200,61,.35)!important}
+      .p-cta-gold:active{transform:translateY(0)!important}
+      .p-cta-ghost{transition:all .22s cubic-bezier(.22,1,.36,1)}
+      .p-cta-ghost:hover{transform:translateY(-1px)}
+      .p-cta-ghost:active{transform:translateY(0)!important}
     `}</style>
 
     {/* Grain overlay */}
@@ -460,82 +469,7 @@ export default function FleetHive() {
               </p>
             </div>
 
-            <div className="price-g" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1.5rem", alignItems: "start" }}>
-              {PRICING_TIERS.map((tier) => (
-                <div key={tier.name} style={{
-                  background: tier.featured ? (isDark ? "#111720" : "#FFFFFF") : theme.priceBg,
-                  border: tier.featured ? `1.5px solid ${tokens.yellow}` : `1px solid ${theme.priceBdr}`,
-                  borderRadius: "1.25rem", overflow: "hidden",
-                  boxShadow: tier.featured
-                    ? (isDark ? "0 24px 64px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,200,61,0.15)" : "0 16px 48px rgba(18,16,14,0.13), 0 0 0 1px rgba(214,162,29,0.2)")
-                    : (isDark ? "0 8px 32px rgba(0,0,0,0.35)" : "0 4px 20px rgba(18,16,14,0.07)"),
-                  position: "relative",
-                  transform: tier.featured ? "translateY(-12px)" : "none",
-                }}>
-                  {tier.featured && (
-                    <div style={{ position: "absolute", top: -1, left: "50%", transform: "translateX(-50%)" }}>
-                      <div style={{ background: tokens.yellow, color: tokens.yellowText, fontFamily: "'IBM Plex Mono',monospace", fontSize: ".5rem", fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", padding: "4px 14px", borderRadius: "0 0 8px 8px", whiteSpace: "nowrap" }}>Most popular</div>
-                    </div>
-                  )}
-
-                  {/* Tier header */}
-                  <div style={{
-                    padding: tier.featured ? "1.625rem 1.75rem 1.125rem" : "1.25rem 1.75rem .75rem",
-                    ...(tier.featured
-                      ? { background: tokens.yellow, marginTop: 20 }
-                      : { borderBottom: `1px solid ${theme.priceBdr}` }),
-                  }}>
-                    <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".5625rem", fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: tier.featured ? tokens.yellowText : theme.muted, opacity: tier.featured ? .75 : 1, marginBottom: ".625rem" }}>{tier.name}</div>
-                    <div style={{ display: "flex", alignItems: "baseline", gap: ".375rem", marginBottom: ".25rem" }}>
-                      <span style={{ fontFamily: "Manrope,sans-serif", fontSize: "2.625rem", fontWeight: 800, letterSpacing: "-0.05em", color: tier.featured ? tokens.yellowText : theme.text, lineHeight: 1 }}>{tier.price}</span>
-                      <span style={{ fontFamily: "Manrope,sans-serif", fontSize: ".875rem", fontWeight: 500, color: tier.featured ? `${tokens.yellowText}99` : theme.muted }}>/month</span>
-                    </div>
-                    <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".5625rem", color: tier.featured ? `${tokens.yellowText}88` : theme.muted, letterSpacing: ".04em", marginTop: ".25rem" }}>{tier.subtitle}</div>
-                    {tier.extraNote && (
-                      <div style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: ".5rem", background: isDark ? "rgba(125,166,255,0.10)" : "rgba(47,111,237,0.07)", border: `1px solid ${isDark ? "rgba(125,166,255,0.2)" : "rgba(47,111,237,0.15)"}`, borderRadius: 5, padding: "3px 8px" }}>
-                        <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: ".5rem", fontWeight: 600, color: isDark ? "#7DA6FF" : "#2F6FED", letterSpacing: ".06em", textTransform: "uppercase" }}>{tier.extraNote}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Features */}
-                  <div style={{ padding: "1.5rem 1.75rem" }}>
-                    <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: ".6rem", marginBottom: "1.75rem" }}>
-                      {tier.features.map(f => (
-                        <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: 9 }}>
-                          <div style={{ width: 16, height: 16, borderRadius: "50%", background: tier.featured ? `${tokens.yellow}22` : theme.priceBdr, border: `1px solid ${tier.featured ? `${tokens.yellow}55` : theme.priceBdr}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
-                            <Icon d={iconPaths.check} size={9} stroke={tier.featured ? tokens.yellowMid : theme.muted} strokeWidth={2.5} />
-                          </div>
-                          <span style={{ fontSize: ".9rem", color: theme.text, fontWeight: 450, lineHeight: 1.5 }}>{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    {tier.featured ? (
-                      <>
-                        <a href={URLS.onboarding} className="bp" style={{ ...primaryButton({ width: "100%", justifyContent: "center", padding: "12px 0", fontSize: ".9375rem", borderRadius: 8, textDecoration: "none" }) }}>
-                          {tier.ctaLabel} <Icon d={iconPaths.arrow} size={14} stroke={tokens.yellowText} strokeWidth={2.5} />
-                        </a>
-                        <p style={{ textAlign: "center", marginTop: ".75rem", fontFamily: "'IBM Plex Mono',monospace", fontSize: ".5rem", color: theme.faint, letterSpacing: ".06em", textTransform: "uppercase" }}>{tier.trialNote}</p>
-                      </>
-                    ) : (
-                      <a href={URLS.onboarding} style={{
-                        display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-                        width: "100%", padding: "11px 0", borderRadius: 8,
-                        fontFamily: "Manrope,sans-serif", fontSize: ".875rem", fontWeight: 700, letterSpacing: "-.01em",
-                        border: `1.5px solid ${theme.priceBdr}`, background: "transparent",
-                        color: theme.text, textDecoration: "none", boxSizing: "border-box",
-                      }}>
-                        {tier.ctaLabel} <Icon d={iconPaths.arrow} size={13} stroke={theme.text} strokeWidth={2.5} />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p style={{ textAlign: "center", marginTop: "2.5rem", fontFamily: "'IBM Plex Mono',monospace", fontSize: ".5625rem", color: theme.faint, letterSpacing: ".06em", textTransform: "uppercase" }}>
-              All plans · Cancel anytime · No setup fee · Community buying rates included
-            </p>
+            <PricingCards isDark={isDark} />
           </div>
         </section>
 
