@@ -47,7 +47,7 @@ export const MockCosts = ({ isDark }) => {
   const vans = [
     { reg: "EK22 XPL", cost: "£482", prev: "£610", delta: "-21%", good: true },
     { reg: "LN71 ARW", cost: "£718", prev: "£695", delta: "+3%",  good: false },
-    { reg: "BX19 TKM", cost: "£390", prev: "£390", delta: "—",    good: null },
+    { reg: "BX19 TKM", cost: "£390", prev: "£390", delta: "-",    good: null },
     { reg: "YP68 MWA", cost: "£250", prev: "£320", delta: "-22%", good: true },
   ];
   return (

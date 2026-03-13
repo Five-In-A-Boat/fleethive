@@ -38,11 +38,11 @@ export const PRODUCT_TABS = [
   {
     label: "Reminders",
     heading: "Never arrive at an expired MOT.",
-    description: "FleetHive alerts you before service, MOT, insurance, and tax dates become problems. Configure how far ahead you want to know — and get on with the job.",
+    description: "FleetHive alerts you before service, MOT, insurance, and tax dates become problems. Configure how far ahead you want to know - and get on with the job.",
     bullets: [
       "MOT and service reminders",
       "Insurance and tax dates",
-      "Custom lead times — 7, 14, or 30 days",
+      "Custom lead times - 7, 14, or 30 days",
       "Alert reaches you before it's urgent",
     ],
   },
@@ -60,7 +60,7 @@ export const PRODUCT_TABS = [
   {
     label: "Records",
     heading: "Everything stored, nothing lost.",
-    description: "Service history, invoices, insurance documents — all attached to the right vehicle. No more hunting through email or paper files when a garage asks for history.",
+    description: "Service history, invoices, insurance documents - all attached to the right vehicle. No more hunting through email or paper files when a garage asks for history.",
     bullets: [
       "Full service history per vehicle",
       "Invoice and receipt store",
@@ -80,13 +80,13 @@ export const VALUE_PILLARS = [
   {
     num: "02",
     title: "Running costs, per vehicle",
-    body: "See what each van is actually costing. Compare month to month. Make supplier decisions with real data.",
+    body: "See what each vehicle is actually costing. Compare month to month. Make supplier decisions with real data.",
     bullets: ["Cost breakdown per vehicle", "Invoice and service history", "Month-on-month comparison"],
   },
   {
     num: "03",
     title: "Records in one place",
-    body: "Service records, invoices, and documents stay with the vehicle — not in inboxes, memory, or folders.",
+    body: "Service records, invoices, and documents stay with the vehicle - not in inboxes, memory, or folders.",
     bullets: ["Full service history", "Invoice and document store", "Accessible when you need it"],
   },
 ];
@@ -100,12 +100,12 @@ export const TESTIMONIALS = {
   secondary: [
     {
       avatar: "/images/testimonial-james.avif",
-      quote: "We had MOT reminders going to three different inboxes and still nearly missed one. FleetHive fixed that inside a week — van would have been off the road for three days.",
+      quote: "We had MOT reminders going to three different inboxes and still nearly missed one. FleetHive fixed that inside a week - van would have been off the road for three days.",
       attribution: "J. Mitchell, Owner · Electrical contractor · 6 vans · Cardiff",
     },
     {
       avatar: "/images/testimonial-michelle.avif",
-      quote: "Setup took about twenty minutes for all four vans. I wasn't expecting it to be that quick. The records view alone is worth it — everything's just there.",
+      quote: "Setup took about twenty minutes for all four vans. I wasn't expecting it to be that quick. The records view alone is worth it - everything's just there.",
       attribution: "R. Thompson, Director · Groundworks contractor · 4 vans · Leeds",
     },
   ],
@@ -124,7 +124,7 @@ export const PRICING_TIERS = [
     name: "Pro",
     price: "£12.95",
     subtitle: "2–5 vehicles · inc. VAT",
-    features: ["Everything in Free", "Full spend benchmarks", "Cost forecasting", "Multi-vehicle control"],
+    features: ["Everything in Free, plus:", "Full spend benchmarks", "Cost forecasting", "Multi-vehicle control"],
     featured: true,
     ctaLabel: "Start free trial",
     trialNote: "14-day free trial · No card needed",
@@ -133,8 +133,8 @@ export const PRICING_TIERS = [
     name: "Fleet",
     price: "£19.85",
     subtitle: "6–10 vehicles · inc. VAT",
-    extraNote: "+£1.50 inc. VAT per extra vehicle",
-    features: ["Everything in Pro", "Multi-user access", "Extended vehicle range"],
+    extraNote: "+£2.00 inc. VAT per extra vehicle",
+    features: ["Everything in Pro, plus:", "Multi-user access", "Extended vehicle range"],
     featured: false,
     ctaLabel: "Get started free",
   },
