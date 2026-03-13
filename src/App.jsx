@@ -255,7 +255,7 @@ export default function FleetHive() {
               </h1>
 
               <p className="e4" style={{ fontSize: "1.125rem", lineHeight: 1.75, color: theme.muted, fontWeight: 450, letterSpacing: "-0.01em", maxWidth: "40rem", marginBottom: "2rem" }}>
-                FleetHive keeps your service dates, costs, and records in one place — and connects you to discounted community rates on parts and servicing. Less to remember. Less to spend.
+                FleetHive keeps your service dates, costs, and records in one place - and connects you to discounted community rates on parts and servicing. Less to remember. Less to spend.
               </p>
 
               <div className="e5" style={{ display: "flex", flexWrap: "wrap", gap: ".75rem", marginBottom: "1rem" }}>
@@ -543,7 +543,7 @@ export default function FleetHive() {
               <span style={{ color: tokens.yellow }}>starts now.</span>
             </h2>
             <p style={{ fontSize: "1.0625rem", color: theme.muted, lineHeight: 1.75, maxWidth: "34rem", margin: "0 auto 2.5rem", fontWeight: 450, letterSpacing: "-.01em" }}>
-              Add your vehicles. Set your reminders. See what each one is costing. Free for 14 days — no card required.
+              Add your vehicles. Set your reminders. See what each one is costing. Free for 14 days - no card required.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: ".875rem", justifyContent: "center", marginBottom: "1.25rem" }}>
               <a href={URLS.onboarding} className="bp" style={primaryButton({ padding: "15px 34px", fontSize: "1rem" })}>
